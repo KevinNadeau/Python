@@ -44,6 +44,25 @@ class Lettre(Envoi):
         print("Format : " + self.format)
         print("Prix du timbre : " + str(self.calculTimbre()))
         
-#L1 = Lettre("expresse", "Denver", "Paris", 80, 'A4')
-#L1.ToString()
+class Colis(Envoi):
+    
+    def __init__(self, expedition, expedition_adresse, destination_adresse, poids, volume):
+        Envoi.__init__(self, poids, expedition, destination_adresse, expedition_adresse)
+        self.format=format
+        self.volume=volume
+    def calculTimbre(self):
+        count = self.poids/1000
+        montant = 0.25*self.volume*count
+        if self.expedition == 'expresse':
+            return montant*2
+        else: 
+            return montant
+        
+    def ToString(self):
+        print("Mode:" + self.expedition)
+        print("Adresse d'expedition: " + self.expedition_adresse)
+        print("Adresse de destination: " + self.destination_adresse)
+        print("Poids: " + str(self.poids) + " grammes")        
+        print("Prix du timbre : " + str(self.calculTimbre()))
+        print("Volume : " + str(self.volume))
         
